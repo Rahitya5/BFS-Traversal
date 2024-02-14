@@ -1,0 +1,39 @@
+# BFS-Traversal
+# importing Queue
+from queue import Queue
+a_list={
+  "A":["B","D"],
+  "B":["A","C"],
+  "C":["B"],
+  "D":["A","E","F"],
+  "E":["D","F","G"],
+  "F":["D","E","H"],
+  "G":["E","H"],
+  "H":["G","F"]
+}
+visit={}
+level={}
+parent={}
+bfs_traversal_output=[]
+queue=Queue()
+for node in a_list.keys():
+  visit[node]=False
+  parent[node]=None
+  level[node]=-1
+print(visit)
+print(level)
+print(parent)
+c="A"
+visit[c]=True
+level[c]=0
+queue.put(c)
+while not queue.empty():
+  u=queue.get()
+  bfs_traversal_output.append(u)
+  for v in a_list[u]:
+    if not visit[v]:
+      visit[v]=True
+      parent[v]=u
+      level[v]=level[u]+1
+      queue.put(v)
+print(bfs_traversal_output)
